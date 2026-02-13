@@ -6,6 +6,7 @@ const { dbConnection } = require('./configs/db');
 const app = express();
 
 app.use('/api/transactions', require('./routes/transaction.routes'));
+app.use('/api/notifications', require('./routes/notification.routes'));
 
 // Conectar a base de datos
 dbConnection();
