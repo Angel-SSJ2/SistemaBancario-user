@@ -1,3 +1,4 @@
+//deposit model
 const { Schema, model } = require('mongoose');
 
 const DepositSchema = Schema({

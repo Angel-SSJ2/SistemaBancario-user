@@ -1,3 +1,4 @@
+//depositModel routes
 const { Router } = require('express');
 const { getHistory } = require('../controllers/deposit.controller.js');
 const { validateJWT } = require('../middlewares/validate-jwt');

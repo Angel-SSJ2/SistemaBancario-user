@@ -1,3 +1,4 @@
+//deposit controller
 const Deposit = require('../models/deposit.model');
 
 const getHistory = async (req, res) => {
