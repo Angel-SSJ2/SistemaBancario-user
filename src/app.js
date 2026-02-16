@@ -10,8 +10,9 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
 
-app.use('/api/transactions', transactionRoutes);
-app.use('/api/users', userRoutes);
+
+app.use('/api/transactions', require('./routes/transaction.routes'));
+app.use('/api/notifications', require('./routes/notification.routes'));
 
 // Conectar a base de datos
 dbConnection();
