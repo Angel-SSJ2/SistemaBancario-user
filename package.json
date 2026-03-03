@@ -1,5 +1,5 @@
 {
-  "name": "sistemabancario-user",
+  "name": "sistemabancario-admin",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Angel-SSJ2/SistemaBancario-user.git"
+    "url": "git+https://github.com/Angel-SSJ2/SistemaBancario-admin.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Angel-SSJ2/SistemaBancario-user/issues"
+    "url": "https://github.com/Angel-SSJ2/SistemaBancario-admin/issues"
   },
-  "homepage": "https://github.com/Angel-SSJ2/SistemaBancario-user#readme",
+  "homepage": "https://github.com/Angel-SSJ2/SistemaBancario-admin#readme",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
