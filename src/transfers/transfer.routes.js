@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const { getMyTransactions } = require('./transaction.controller');
+const { createTransfer } = require('./transfer.controller');
 const { validateJWT } = require('../../middlewares/validate-jwt');
 
 const router = Router();
 
-router.get('/my-history', validateJWT, getMyTransactions);
+router.post('/', validateJWT, createTransfer);
 
 module.exports = router;
