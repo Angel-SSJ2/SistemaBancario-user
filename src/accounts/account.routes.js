@@ -1,11 +1,12 @@
-const { Router } = require('express');
-const { createAccount, getMyAccounts, getMyAccount } = require('./account.controller');
-const { validateJWT } = require('../../middlewares/validate-jwt');
+import { Router } from 'express';
+import { createAccount, getMyAccounts, getMyAccount } from './account.controller.js';
+import { validateJWT } from '../../middlewares/validate-jwt.js';
+import { validateCreateAccount } from '../../middlewares/accounts-validator.js';
 
 const router = Router();
 
-router.post('/', validateJWT, createAccount);
-router.get('/', validateJWT, getMyAccounts);
 router.get('/me', validateJWT, getMyAccount);
+router.get('/', validateJWT, getMyAccounts);
+router.post('/', validateJWT, validateCreateAccount, createAccount);
 
-module.exports = router;
+export default router;

@@ -1,28 +1,28 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const AccountSchema = Schema({
+const AccountSchema = new Schema({
     accountNumber: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     userId: {
         type: String,
-        required: true
+        required: true,
     },
     balance: {
         type: Number,
-        default: 0
+        default: 0,
     },
     accountType: {
         type: String,
         required: true,
-        enum: ['Monetaria', 'Ahorro']
+        enum: ['Monetaria', 'Ahorro'],
     },
     status: {
         type: Boolean,
-        default: true
-    }
+        default: true,
+    },
 });
 
-module.exports = model('Account', AccountSchema);
+export const Account = model('Account', AccountSchema);
