@@ -1,7 +1,11 @@
-# Dependencias (esta es vital, ¡pesan mucho!)
+# Dependencias
 node_modules/
 
-# Logs y Debug
+# Variables de entorno
+.env
+
+# Logs
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

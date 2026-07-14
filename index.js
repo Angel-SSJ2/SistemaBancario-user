@@ -1,14 +1,17 @@
-require('dotenv').config();
-const app = require('./configs/app');
+import dotenv from 'dotenv';
+import { initServer } from './configs/app.js';
 
-/**
- * Inicia el servidor de Express en el puerto definido en las variables de entorno.
- */
-const startServer = () => {
-    const port = process.env.PORT || 3002;
-    app.listen(port, () => {
-        console.log(`Servidor de Usuario corriendo en el puerto ${port}`);
-    });
-};
+dotenv.config();
 
-startServer();
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception:', err);
+    process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+    process.exit(1);
+});
+
+console.log('Iniciando servidor de Usuario...');
+initServer();
