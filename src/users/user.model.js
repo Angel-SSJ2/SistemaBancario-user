@@ -1,28 +1,32 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const UserSchema = Schema({
+const UserSchema = new Schema({
+    _id: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
-        required: [true, 'El nombre es obligatorio']
+        required: [true, 'El nombre es obligatorio'],
     },
     surname: {
         type: String,
-        required: [true, 'El apellido es obligatorio']
+        required: [true, 'El apellido es obligatorio'],
     },
     email: {
         type: String,
         required: [true, 'El correo es obligatorio'],
-        unique: true
+        unique: true,
     },
     role: {
         type: String,
         required: true,
-        enum: ['Admin', 'Client']
+        enum: ['Admin', 'Client'],
     },
     status: {
         type: Boolean,
-        default: true
-    }
+        default: true,
+    },
 });
 
-module.exports = model('User', UserSchema);
+export const User = model('User', UserSchema);
