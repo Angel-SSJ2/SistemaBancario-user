@@ -1,10 +1,10 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const MonitoringSchema = Schema({
+const MonitoringSchema = new Schema({
     action: { type: String, required: true },
     userId: { type: String, required: true },
     details: { type: String, required: true },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
 });
 
-module.exports = model('Monitoring', MonitoringSchema);
+export const Monitoring = model('Monitoring', MonitoringSchema);
