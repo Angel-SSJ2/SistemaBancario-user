@@ -1,13 +1,8 @@
-const helmet = require('helmet');
+import helmet from 'helmet';
 
-/**
- * Configura y retorna los middlewares de Helmet para establecer las cabeceras de seguridad HTTP en la aplicación.
- */
-const configureHelmet = () => {
+export const configureHelmet = () => {
     return helmet({
         contentSecurityPolicy: false,
-        crossOriginEmbedderPolicy: false
+        crossOriginEmbedderPolicy: false,
     });
 };
-
-module.exports = { configureHelmet };
