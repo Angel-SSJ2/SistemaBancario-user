@@ -1,9 +1,10 @@
-const { Router } = require('express');
-const { createPayment } = require('./payment.controller');
-const { validateJWT } = require('../../middlewares/validate-jwt');
+import { Router } from 'express';
+import { createPayment } from './payment.controller.js';
+import { validateJWT } from '../../middlewares/validate-jwt.js';
+import { validateCreatePayment } from '../../middlewares/payments-validator.js';
 
 const router = Router();
 
-router.post('/', validateJWT, createPayment);
+router.post('/', validateJWT, validateCreatePayment, createPayment);
 
-module.exports = router;
+export default router;

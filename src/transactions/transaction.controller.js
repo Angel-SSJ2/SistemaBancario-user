@@ -1,21 +1,30 @@
-const Transaction = require('./transaction.model');
-const Account = require('../accounts/account.model');
+`use strict`;
 
-/**
- * Obtiene el historial exclusivo de transacciones (envíos y recepciones) de las cuentas del usuario autenticado.
- */
-const getMyTransactions = async (req, res) => {
-    const userAccounts = await Account.find({ userId: req.user.id }).select('accountNumber');
-    const accountNumbers = userAccounts.map(acc => acc.accountNumber);
+import { Transaction } from './transaction.model.js';
+import { Account } from '../accounts/account.model.js';
 
-    const transactions = await Transaction.find({
-        $or: [
-            { senderAccount: { $in: accountNumbers } },
-            { receptorAccount: { $in: accountNumbers } }
-        ]
-    }).populate('service', 'name').sort({ date: -1 });
+export const getMyTransactions = async (req, res) => {
+    try {
+        const userAccounts = await Account.find({ userId: req.user.id }).select('accountNumber');
+        const accountNumbers = userAccounts.map((acc) => acc.accountNumber);
 
-    res.status(200).json({ success: true, transactions });
+        const filter = {
+            $or: [
+                { senderAccount: { $in: accountNumbers } },
+                { receptorAccount: { $in: accountNumbers } },
+            ],
+        };
+
+        if (req.query.type) {
+            filter.type = req.query.type;
+        }
+
+        const transactions = await Transaction.find(filter)
+            .populate('service', 'name provider')
+            .sort({ date: -1 });
+
+        res.status(200).json({ success: true, transactions });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error al obtener transacciones', error: error.message });
+    }
 };
-
-module.exports = { getMyTransactions };

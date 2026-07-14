@@ -1,17 +1,17 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const TransactionSchema = Schema({
-    type: { 
-        type: String, 
-        required: true, 
-        enum: ['Deposit', 'Transfer', 'Payment'] 
+const TransactionSchema = new Schema({
+    type: {
+        type: String,
+        required: true,
+        enum: ['Deposit', 'Transfer', 'Payment'],
     },
     senderAccount: { type: String },
     receptorAccount: { type: String },
     service: { type: Schema.Types.ObjectId, ref: 'Service' },
     amount: { type: Number, required: true },
     description: { type: String, required: true },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
 });
 
-module.exports = model('Transaction', TransactionSchema);
+export const Transaction = model('Transaction', TransactionSchema);

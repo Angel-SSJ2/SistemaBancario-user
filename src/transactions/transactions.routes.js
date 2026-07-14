@@ -1,9 +1,10 @@
-const { Router } = require('express');
-const { getMyTransactions } = require('./transaction.controller');
-const { validateJWT } = require('../../middlewares/validate-jwt');
+import { Router } from 'express';
+import { getMyTransactions } from './transaction.controller.js';
+import { validateJWT } from '../../middlewares/validate-jwt.js';
+import { validateGetTransactions } from '../../middlewares/transactions-validator.js';
 
 const router = Router();
 
-router.get('/my-history', validateJWT, getMyTransactions);
+router.get('/my-history', validateJWT, validateGetTransactions, getMyTransactions);
 
-module.exports = router;
+export default router;
